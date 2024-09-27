@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "restyle-app-ca200"
-  }
+    "default": "remodify-e9da9",
+    "Remodify": "remodify-e9da9"
+  },
+  "targets": {},
+  "etags": {}
 }
