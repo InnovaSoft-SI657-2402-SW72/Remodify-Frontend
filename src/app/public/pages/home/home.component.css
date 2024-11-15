@@ -10,7 +10,7 @@ body {
     align-items: center;
     flex-direction: column;
 
-    height: 100vh;
+    height: calc(100vh - 64px);
 }
 
 .container-content{
@@ -31,7 +31,7 @@ body {
 }
 
 .information {
-    width: 83%;;
+    width: 83%;
     max-width: 100%;
 }
 
@@ -68,8 +68,8 @@ button{
 }
 
 img {
-    width: 720px;
-    max-width: 100%;
+margin-bottom: -8px;
+    height: calc(100vh - 128px);
 }
 
 /*Reaccion de button button-signIn*/
@@ -81,7 +81,7 @@ img {
 /*Reaccion de button button-signUp*/
 .button-sign-up:hover{
     background-color: #b2bdf3;
-    color: #e5edf6;
+    color: #FFF;
 }
 
 
