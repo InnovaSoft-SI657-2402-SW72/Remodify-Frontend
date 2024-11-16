@@ -1,7 +1,52 @@
-<app-toolbar />
-<app-contractor-sidebar-contractor *ngIf="this.type == 'contractor'" />
-<app-sidebar *ngIf="this.type == 'remodeler'"/>
 
+<app-toolbar></app-toolbar>
+<app-sidebar></app-sidebar>
+
+<div class="container remodeler-search-container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 ">
+            <div class="remodeler-search-container">
+                <div class="remodeler-search-start d-flex align-items-center mb-4">
+                    <form class="search-form flex-grow-1 me-2">
+                        <div class="input-group">
+                            <span class="input-group-text bg-primary text-white">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Search by..." [(ngModel)]="searchTerm" name="searchTerm">
+                        </div>
+                    </form>
+                    <div class="search-buttons d-flex">
+                        <button class="btn btn-primary me-2" (click)="applySearchFilter()">Search</button>
+                        <button class="btn btn-secondary" (click)="clearFilter()">Clean</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-primary mb-3">Projects</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-4" *ngFor="let project of filteredProjects">
+                            <div class="card h-100 shadow-sm">
+                                <img src="{{project.Image}}" class="card-img-top" alt="Project Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{project.name}}</h5>
+                                    <p class="card-text">{{project.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--
 <div class="remodeler-search-container">
   <div class="remodeler-search-start">
     <form class="search-form">
@@ -31,7 +76,7 @@
 
         <mat-tab label="All">
             <div class="remodeler-cards-home" *ngFor="let business of businesses">
-                
+
                 <div class="remodeler-card">
                   <a (click)="redirectToComponent(business.id)">{{business.name}}</a>
                     <mat-card class="project-card">
@@ -113,7 +158,7 @@
 
 </div>
 
-
+-->
 
 
 

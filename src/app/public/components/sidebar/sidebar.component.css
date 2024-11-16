@@ -42,9 +42,13 @@
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+
 }
 .sidenav-links a{
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
   text-decoration: none;
   transition: 0.4s ease;
   cursor: pointer;
@@ -52,10 +56,11 @@
 .sidenav-links mat-icon{
   cursor: pointer;
   transition: 0.4s ease;
-  margin: 0.3rem 1rem 0 0.5rem;
+  margin-right: 0.5rem;
 }
 .sidenav-links p{
   font-size:1rem;
+  margin: 0;
 }
 .sidenav-links-separator{
   border-bottom: 1px solid #f5f5f5;
@@ -65,6 +70,29 @@
   position: fixed;
   bottom: 0;
 }
+.btn-primary {
+  background-color: #3F51B5;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #3F51B5;
+}
+
+.user-name {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  color: white;
+}
+
+.logout-link:hover {
+  color: darkred !important;
+}
+
+.logout-link mat-icon {
+  margin-right: 0.5rem;
+}
+
 @media (hover){
   .sidenav-icons mat-icon:hover{
     transform: translateY(3px);

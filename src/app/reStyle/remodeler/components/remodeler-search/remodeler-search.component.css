@@ -1,3 +1,78 @@
+
+.remodeler-search-container {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+
+}
+
+.remodeler-search-start {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  width: 100%;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.search-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.search-btn, .clear-btn {
+  width: 6rem;
+  background-color: #3F51B5;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  height: 3rem;
+}
+
+@media (hover) {
+  .search-btn:hover, .clear-btn:hover {
+    transition: 0.4s ease;
+    background-color: #DEDEFF;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search-bar, .search-filter, .search-btn, .clear-btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .remodeler-search-start {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1480px) {
+  .remodeler-search-container {
+    margin-top: 1.5rem;
+  }
+
+  .remodeler-search-start {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
+/*
 .remodeler-search-container{
   margin-left: 20rem;
   margin-top: 3rem;
@@ -132,3 +207,5 @@
     width: 100%;
   }
 }
+
+*/

@@ -71,6 +71,12 @@ export class SidebarComponent implements OnInit{
       this.router.navigateByUrl('/coming-soon');
     }
   }
+
+  logOut(){
+    sessionStorage.clear();
+    this.router.navigate(['/home']);
+  }
+
   redirectToSupport(){
     this.router.navigate([`support`])
   }
