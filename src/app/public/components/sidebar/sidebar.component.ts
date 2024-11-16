@@ -62,7 +62,7 @@ export class SidebarComponent implements OnInit{
     alert('Esta opción está en desarrollo, Disculpe las molestias!');
   }
   redirectToProfile() {
-    this.router.navigate([`home/profile/${this.type}/${this.id}`])
+    this.router.navigate([`home/profile/remodeler/${this.id}`])
   }
   redirectToProyects(){
     if(this.type === 'remodeler'){

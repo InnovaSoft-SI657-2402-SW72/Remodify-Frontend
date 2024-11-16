@@ -1,4 +1,11 @@
+.custom-primary-bg {
+  background-color: #3F51B5 !important;
+  border-color: #3F51B5 !important;
+}
 
+.custom-primary-text {
+  color: #3F51B5 !important;
+}
 .remodeler-search-container {
   margin-top: 3rem;
   padding-top: 2.5rem;

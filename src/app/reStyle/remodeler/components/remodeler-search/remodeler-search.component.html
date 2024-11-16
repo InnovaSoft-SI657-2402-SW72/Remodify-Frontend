@@ -9,14 +9,14 @@
                 <div class="remodeler-search-start d-flex align-items-center mb-4">
                     <form class="search-form flex-grow-1 me-2">
                         <div class="input-group">
-                            <span class="input-group-text bg-primary text-white">
+                            <span class="input-group-text custom-primary-bg text-white">
                                 <i class="bi bi-search"></i>
                             </span>
                             <input type="text" class="form-control" placeholder="Search by..." [(ngModel)]="searchTerm" name="searchTerm">
                         </div>
                     </form>
                     <div class="search-buttons d-flex">
-                        <button class="btn btn-primary me-2" (click)="applySearchFilter()">Search</button>
+                        <button class="btn custom-primary-bg text-white me-2" (click)="applySearchFilter()">Search</button>
                         <button class="btn btn-secondary" (click)="clearFilter()">Clean</button>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h3 class="text-primary mb-3">Projects</h3>
+                    <h3 class="custom-primary-text mb-3">Projects</h3>
                     <div class="row">
                         <div class="col-md-6 mb-4" *ngFor="let project of filteredProjects">
                             <div class="card h-100 shadow-sm">
@@ -41,8 +41,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 
