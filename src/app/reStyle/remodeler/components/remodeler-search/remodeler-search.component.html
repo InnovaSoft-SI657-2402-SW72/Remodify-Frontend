@@ -1,5 +1,5 @@
 <app-toolbar />
-<app-contractor-sidebar-contractor *ngIf="this.type == 'contractor'" />
+<app-contractor-sidebar-contractor *ngIf="this.type === 'contractor'" />
 <app-sidebar *ngIf="this.type == 'remodeler'"/>
 
 <div class="remodeler-search-container">
@@ -31,7 +31,7 @@
 
         <mat-tab label="All">
             <div class="remodeler-cards-home" *ngFor="let business of businesses">
-                
+
                 <div class="remodeler-card">
                   <a (click)="redirectToComponent(business.id)">{{business.name}}</a>
                     <mat-card class="project-card">
@@ -112,10 +112,3 @@
   </div>
 
 </div>
-
-
-
-
-
-
-

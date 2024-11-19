@@ -3,6 +3,7 @@ import {BaseService} from "../../../shared/services/base.service";
 import {User} from "../model/user.entity";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +15,8 @@ export class UserService{
   getUsers(){
     return this.http.get(`${this.baseUrl}/users`);
   }
-  getUserById(id: any){
-    return this.http.get(`${this.baseUrl}/users/${id}`);
+  getUserById(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/users/${userId}`);
   }
   updateUser(id: any, data: any){
     return this.http.put(`${this.baseUrl}/users/${id}`, data);

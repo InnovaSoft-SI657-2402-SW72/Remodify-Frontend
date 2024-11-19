@@ -46,13 +46,13 @@ export class RemodelerSearchComponent implements OnInit{
   businesses: Business[] = [];
   projects: any[] = [];
   searchTerm: string = '';
-  type: string = ''
+  type: string | null = null;
   @ViewChild(MatPaginator, {static:true}) paginator!: MatPaginator;
 
   constructor(private remodelerApiService: RemodelerApiService, private router: Router) {
   }
   ngOnInit(){
-    this.type = sessionStorage.getItem("userType".toString()) || '';
+    this.type = sessionStorage.getItem('userType');
     this.getResources();
   }
 

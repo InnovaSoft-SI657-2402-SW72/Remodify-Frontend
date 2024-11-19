@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Contracter} from "../../model/contracter.entity";
-import {ContracterService} from "../../services/contracter.service";
-import {MatButton} from "@angular/material/button";
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import { Component, OnInit } from '@angular/core';
+import { Contracter } from "../../model/contracter.entity";
+import { ContracterService } from "../../services/contracter.service";
+import { MatButton } from "@angular/material/button";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import {
     MatCard, MatCardActions,
     MatCardContent,
@@ -11,17 +11,17 @@ import {
     MatCardSubtitle,
     MatCardTitle,
 } from "@angular/material/card";
-import {MatIcon} from "@angular/material/icon";
-import {NgForOf} from "@angular/common";
-import {UserService} from "../../../security/services/user.service";
-import {SidebarComponent} from "../../../../public/components/sidebar/sidebar.component";
-import {ToolbarComponent} from "../../../../public/components/toolbar/toolbar.component";
-import {RemodelerApiService} from "../../../remodeler/services/remodeler-api.service";
-import {ContractorSidebarComponent} from "../../../../public/components/sidebarcontractor/sidebar.component";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {FormsModule} from "@angular/forms";
-import {EditFormComponent} from "../edit-form/edit-form.component";
+import { MatIcon } from "@angular/material/icon";
+import { NgForOf } from "@angular/common";
+import { UserService } from "../../../security/services/user.service";
+import { SidebarComponent } from "../../../../public/components/sidebar/sidebar.component";
+import { ToolbarComponent } from "../../../../public/components/toolbar/toolbar.component";
+import { RemodelerApiService } from "../../../remodeler/services/remodeler-api.service";
+import { ContractorSidebarComponent } from "../../../../public/components/sidebarcontractor/sidebar.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { FormsModule } from "@angular/forms";
+import { EditFormComponent } from "../edit-form/edit-form.component";
 
 @Component({
     selector: 'app-contracter-profile',
@@ -66,7 +66,7 @@ export class ContracterProfileComponent implements OnInit {
         private remodelerApiService: RemodelerApiService,
         private userService: UserService,
         public dialog: MatDialog
-    ) {}
+    ) { }
 
     getResource() {
         if (this.userId) {
@@ -91,13 +91,13 @@ export class ContracterProfileComponent implements OnInit {
     }
     openEditDialog() {
         this.isEditing = !this.isEditing;
-        if(this.isEditing){
+        if (this.isEditing) {
             const dialogRef = this.dialog.open(EditFormComponent, {
                 width: '400px',
                 data: { ...this.userData }
             });
             dialogRef.afterClosed().subscribe(result => {
-                this.userService.updateUser(this.userData.id,result).subscribe(
+                this.userService.updateUser(this.userData.id, result).subscribe(
                     (data: any) => {
                         this.userData = data;
                     },
@@ -109,13 +109,18 @@ export class ContracterProfileComponent implements OnInit {
     }
 
     transformRole(role: any): string {
-        if(role[0] == 'ROLE_CONTRACTOR'){
-            return 'Contractor';
-        } else if(role[0] == 'ROLE_REMODELER') {
-            return 'Remodeler';
+        // Verifica que role sea un array y tenga al menos un elemento
+        if (Array.isArray(role) && role.length > 0) {
+            if (role[0] === 'ROLE_CONTRACTOR') {
+                return 'Contractor';
+            } else if (role[0] === 'ROLE_REMODELER') {
+                return 'Remodeler';
+            }
         }
-        return '';
+        // Devuelve un valor predeterminado si no es válido
+        return 'Unknown Role';
     }
+
     ngOnInit(): void {
         this.userId = sessionStorage.getItem('signInId');
         if (this.userId) {

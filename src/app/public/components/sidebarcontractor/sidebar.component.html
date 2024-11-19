@@ -16,19 +16,19 @@
 
       </div>
 
-      <form class="search-form">
+      <!-- <form class="search-form">
         <mat-form-field class="search-bar">
           <mat-icon matPrefix>search</mat-icon>
           <input matInput placeholder="Search" value="">
         </mat-form-field>
-      </form>
+      </form> -->
     </div>
 
     <div class="sidenav-links">
-      <a>
+      <!-- <a>
         <mat-icon matPrefix>home</mat-icon>
         <p style="display: inline;" (click)="redirectToRemodelers()">Home</p>
-      </a>
+      </a> -->
 
         <div class="sidenav-links-separator"></div>
       <a (click)="redirectToRemodelers()">
@@ -51,6 +51,10 @@
         <p style="display: inline;">Support</p>
       </a>
         <div class="sidenav-links-separator"></div>
+        <a (click)="logOut()">
+            <mat-icon matPrefix>logout</mat-icon>
+            <p style="display: inline;">Log out</p>
+        </a>
 
     </div>
 
@@ -59,4 +63,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

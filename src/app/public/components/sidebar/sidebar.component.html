@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container *ngIf="!isLoading" class="sidenav-container">
   <mat-sidenav-content class="sidenav-content">
     <div class="sidenav-start">
       <div class ="sidenav-icons">
@@ -42,4 +42,3 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
