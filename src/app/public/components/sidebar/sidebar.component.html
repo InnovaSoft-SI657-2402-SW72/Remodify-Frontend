@@ -2,19 +2,13 @@
   <mat-sidenav-content class="sidenav-content">
     <div class="sidenav-start">
       <div class ="sidenav-icons">
-          <a>
+          <button class="btn btn-primary rounded-circle p-3" (click)="redirectToProfile()">
               <img mat-card-avatar class="sidenav-image" src="{{userData.image}}" alt="Sidenav avatar"/>
-          </a>
-          <p class="user-name">Hi, {{userData.firstName}}!</p>
-
+              <p class="user-name mt-2">Hi, {{userData.firstName}}!</p>
+          </button>
       </div>
 
-      <form class="search-form">
-        <mat-form-field class="search-bar">
-          <mat-icon matPrefix>search</mat-icon>
-          <input matInput placeholder="Search" value="">
-        </mat-form-field>
-      </form>
+
     </div>
 
     <div class="sidenav-links">
@@ -34,6 +28,13 @@
         <p style="display: inline;">Support</p>
       </a>
         <div class="sidenav-links-separator"></div>
+
+        <a (click)="logOut()" class="logout-link d-flex align-items-center text-danger">
+            <mat-icon matPrefix>logout</mat-icon>
+            <p class="mb-0 ms-2">Log out</p>
+        </a>
+
+
 
     </div>
 

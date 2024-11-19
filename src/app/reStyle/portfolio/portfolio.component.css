@@ -1,71 +1,38 @@
-
-#create-project-container{
-    margin-top: 1.5rem;
-    margin-left: 21rem;
-    margin-right: 3rem;
-    font-family: "Montserrat", sans-serif;
+#create-project-container {
+    max-width: 800px;
+    margin: auto;
 }
 
-.project-title{
-    font-size: 2rem;
-    font-weight: bold;
-    color: #3F51B5;
-}
-#create-project-container #editForm{
-    display: flex;
-    justify-content: center;
-}
-.fileInput {
-    position: absolute;
-    z-index: 9;
-    opacity: 0;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    cursor: pointer;
+.project-header-container {
+    padding-top: 60px !important;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
 }
 
-.information-project-container{
-    background-color: #dedeff;
-    width: 50%;
-    margin-top: 1rem;
-    border-radius: 10px;
+.project-title {
+    font-weight: 500;
+    color: #333;
 }
 
-.project-form{
-   padding: 2rem;
+.mat-form-field {
+    margin-bottom: 1rem;
 }
-.send-button{
-    display: flex;
-    justify-content: right;
-}
-#create-project-container .send-btn{
-    width: 6rem;
+
+.btn-primary {
     background-color: #3F51B5;
-    color: white;
-    font-family: "Montserrat", sans-serif;
-    margin-bottom: 1.5rem;
-    height: 3rem;
+    border: none;
+    padding: 0.5rem 2rem;
+    font-size: 1rem;
+    color: #fff; /* Añade esta línea para cambiar el color del texto a blanco */
 }
-.advice-container{
-    padding-left: 20px;
-    display: flex;
-    flex-direction: row;
+
+.advice-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
 }
-.advice-paragraph{
-    width: 300px;
-    opacity: 70%;
-}
-.checked{
-    color:yellow;
-}
-#create-project-container mat-icon{
-    cursor: pointer;
-}
-@media (hover){
-    .send-btn:hover{
-        transition: 0.4s ease;
-        background-color: #003F8F;
-    }
+
+.advice-paragraph {
+    font-size: 0.9rem;
+    color: #555;
 }

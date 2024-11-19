@@ -26,6 +26,8 @@ mat-toolbar {
 
 .logo {
     cursor: pointer;
+    height: 60px;
+    width: auto;
 }
 
 button {

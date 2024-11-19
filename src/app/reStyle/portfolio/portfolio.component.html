@@ -1,46 +1,48 @@
-<app-toolbar-remodeler></app-toolbar-remodeler>
-<app-sidebar ></app-sidebar>
+<app-toolbar></app-toolbar>
+<app-sidebar></app-sidebar>
 
-<div id="create-project-container">
-    <div class="project-header-container">
-        <div class="project-header">
-            <p class="project-title">Add Remodeling Project</p>
+<div id="create-project-container" class="container mt-5 text-center">
+    <!-- contenido existente -->
+    <div class="project-header-container text-center mb-4">
+        <div class="project-header ">
+            <p class="project-title h3">Add Remodeling Project</p>
         </div>
     </div>
     <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
         <mat-tab class="label-title" label="Information">
             <div class="information-project-container">
-                <div class="project-form">
+                <div class="project-form mt-4">
                     <form [formGroup]="portfolioForm" (ngSubmit)="onSubmit()">
-                        <p>Image Url</p>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>Add an image</mat-label>
-                                <input matInput formControlName="image" placeholder="Image url" required>
+                        <div class="mb-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Image URL</mat-label>
+                                <input matInput formControlName="image" placeholder="Image URL" required>
                             </mat-form-field>
+                        </div>
 
-                        <p> Title <br>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>Add a project title</mat-label>
+                        <div class="mb-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Project Title</mat-label>
                                 <input matInput formControlName="name" placeholder="Title" required>
                             </mat-form-field>
-                        </p>
+                        </div>
 
-                        <p> Description <br>
-                            <mat-form-field appearance="fill" style="width: 100%;">
-                                <mat-label>Add a short description</mat-label>
+                        <div class="mb-3">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Description</mat-label>
                                 <textarea matInput formControlName="description" placeholder="Description" required></textarea>
                             </mat-form-field>
-                        </p>
+                        </div>
 
-                        <div class="send-button">
-                            <button class="send-btn" type="submit" mat-flat-button>Save</button>
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="submit" mat-flat-button>Save</button>
                         </div>
                     </form>
                 </div>
-                <div class="advice-container">
+                <div class="advice-container mt-4 p-3 border rounded text-center">
                     <mat-icon style="opacity: 70%">info</mat-icon>
-                    <div class="advice-paragraph">
-                        <p>Post a project you have done before so that your clients know what they can expect from you.  Increase your opportunities by letting them know about your work.</p>
+                    <div class="advice-paragraph mt-2">
+                        <p>Post a project you have done before so that your clients know what they can expect from you. Increase your opportunities by letting them know about your work.</p>
                     </div>
                 </div>
             </div>

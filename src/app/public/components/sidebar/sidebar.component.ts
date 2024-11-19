@@ -51,6 +51,7 @@ export class SidebarComponent implements OnInit {
         }
     }
 
+
     redirectToRemodelers() {
         this.router.navigateByUrl('/business');
     }
@@ -67,9 +68,7 @@ export class SidebarComponent implements OnInit {
     inDevelopment() {
         alert('Esta opción está en desarrollo, Disculpe las molestias!');
     }
-    redirectToProfile() {
-        this.router.navigate([`home/profile/${this.type}/${this.id}`])
-    }
+
     redirectToProyects() {
         if (this.type === 'remodeler') {
             this.router.navigate(['portfolio']);
@@ -80,4 +79,14 @@ export class SidebarComponent implements OnInit {
     redirectToSupport() {
         this.router.navigate([`support`])
     }
+
+    redirectToProfile() {
+        this.router.navigate([`home/profile/remodeler/${this.id}`])
+    }
+
+    logOut() {
+        sessionStorage.clear();
+        this.router.navigate(['/home']);
+    }
+
 }
