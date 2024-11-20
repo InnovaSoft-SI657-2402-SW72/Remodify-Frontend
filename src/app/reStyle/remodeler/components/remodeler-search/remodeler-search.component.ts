@@ -15,6 +15,7 @@ import { SidebarComponent } from "../../../../public/components/sidebar/sidebar.
 import { ToolbarComponent } from "../../../../public/components/toolbar/toolbar.component";
 import { ContractorSidebarComponent } from "../../../../public/components/sidebarcontractor/sidebar.component";
 import { ToolbarRemodelerComponent } from "../../../../public/components/toolbar-remodeler/toolbar-remodeler.component";
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-remodeler-search',
@@ -44,9 +45,10 @@ export class RemodelerSearchComponent implements OnInit {
   filteredProjects: any[] = [];
   searchTerm: string = '';
   type: string = '';
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
-  constructor(private remodelerApiService: RemodelerApiService, private router: Router) {}
+  constructor(private remodelerApiService: RemodelerApiService, private router: Router) {
+  }
 
   ngOnInit() {
     if (!sessionStorage.getItem('reloaded')) {
@@ -61,36 +63,116 @@ export class RemodelerSearchComponent implements OnInit {
 
   getResources(): void {
     this.remodelerApiService.getBusiness().subscribe(
-      (data: any) => {
-        this.businesses = data;
-      },
-      (error: any) => {
-        console.log(error);
-      }
+        (data: any) => {
+          this.businesses = data;
+        },
+        (error: any) => {
+          console.log(error);
+        }
     );
     this.remodelerApiService.getProjects().subscribe(
-      (data: any) => {
-        this.projects = data;
-        this.filteredProjects = data;
-      },
-      (error: any) => {
-        console.log(error);
-      }
+        (data: any) => {
+          this.projects = data;
+          this.filteredProjects = data;
+        },
+        (error: any) => {
+          console.log(error);
+        }
     );
   }
 
-  applySearchFilter(): void {
+  applySearchFilter2(): void {
     if (this.searchTerm) {
       this.filteredProjects = this.projects.filter((project: any) =>
-        project.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+          project.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else {
       this.filteredProjects = this.projects;
     }
   }
 
-  clearFilter(): void {
+  applyFilter(filter: string) {
+    if (filter === "Lima") {
+      this.remodelerApiService.getBusiness().subscribe(
+          (data: any) => {
+            this.businesses = data.filter((business: any) => business.city === filter).map((item: any) => ({
+              id: item.id,
+              name: item.name,
+              image: item.image,
+              expertise: item.expertise,
+              address: item.address,
+              city: item.city,
+              description: item.description,
+              remodelerId: item.remodelerId
+            }));
+          },
+          (error: any) => {
+            console.log(error);
+          }
+      );
+    } else if (filter === "Provincia") {
+      this.remodelerApiService.getBusiness().subscribe(
+          (data: any) => {
+            this.businesses = data.filter((business: any) => business.city !== 'Lima').map((item: any) => ({
+              id: item.id,
+              name: item.name,
+              image: item.image,
+              expertise: item.expertise,
+              address: item.address,
+              city: item.city,
+              description: item.description,
+              remodelerId: item.remodelerId
+            }));
+          },
+          (error: any) => {
+            console.log(error);
+          }
+      );
+    } else if (filter === "Todos") {
+      this.getResources();
+    }
+  }
+
+  applySearchFilter(input: string): void {
+    this.searchTerm = input;
+    this.remodelerApiService.getBusiness().subscribe(
+        (data: any) => {
+          this.businesses = data.filter((business: any) =>
+              business.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+              business.city.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+              business.expertise.toLowerCase().includes(this.searchTerm.toLowerCase())
+          ).map((item: any) => ({
+            id: item.id,
+            name: item.name,
+            image: item.image,
+            expertise: item.expertise,
+            address: item.address,
+            city: item.city,
+            description: item.description,
+            remodelerId: item.remodelerId
+          }));
+        },
+        (error: any) => {
+          console.log(error);
+        }
+    );
+  }
+
+
+
+  clearFilter(){
+    this.searchTerm = '';
+    this.getResources();
+  }
+  clearFilter2(): void {
     this.searchTerm = '';
     this.filteredProjects = this.projects;
+  }
+  getProjectsByBusinessId(businessId: number): any[] {
+    return this.projects.filter(project => Number(project.businessId) === businessId);
+  }
+
+  redirectToComponent(id: number) {
+    this.router.navigateByUrl(`/business/${id}`);
   }
 }

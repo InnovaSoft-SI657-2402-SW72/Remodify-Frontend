@@ -1,68 +1,60 @@
 <app-toolbar></app-toolbar>
 <app-contractor-sidebar-contractor/>
-
-<div class="profile-section">
-    <div class="profile-container">
-        <mat-card class="card" style="width: 1000px">
-
-            <mat-card-header class="title-profile">
-                <mat-card-title style="color: #3F51B5;"> {{userData.firstName + " " + userData.paternalSurname + " " + userData.maternalSurname}}</mat-card-title>
-
-                <mat-card-subtitle>  {{transformRole(userData.roles)}} </mat-card-subtitle>
-            </mat-card-header>
-
-            <mat-card-content class="information-profile">
-
-                <div class="photo-profile">
-                    <img src="{{userData.image}}" alt="photo" class="photo">
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 mt-5">
+            <div class="card mb-4 shadow-sm mt-5">
+                <div class="card-header custom-primary-bg text-white">
+                    <h5 class="card-title mb-0">{{userData.firstName + " " + userData.paternalSurname + " " + userData.maternalSurname}}</h5>
+                    <small class="card-subtitle">{{transformRole(userData.roles)}}</small>
                 </div>
-
-                <div class="description-profile">
-                    <p>{{userData.description}}</p>
-                </div>
-
-                <div class="contact-information">
-
-                    <div class="information">
-                        <mat-icon style="color:#003F8F;" class="icons">email</mat-icon>
-                        <span style="color:#003F8F;" class="correo-text">Correo</span>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="{{userData.image}}" alt="photo" class="img-fluid rounded-circle mb-3 border custom-primary-border">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-2">
+                                <i class="bi bi-envelope-fill custom-primary-text"></i>
+                                <span class="custom-primary-text fw-bold">My description</span>
+                                <p>{{userData.description}}</p>
+                            </div>
+                            <div class="mb-2">
+                                <i class="bi bi-envelope-fill custom-primary-text"></i>
+                                <span class="custom-primary-text fw-bold">Email</span>
+                                <p>{{userData.email}}</p>
+                            </div>
+                            <div class="mb-2">
+                                <i class="bi bi-telephone-fill custom-primary-text"></i>
+                                <span class="custom-primary-text fw-bold">Contact</span>
+                                <p>{{userData.phone}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <p>{{userData.email}}</p>
-
-                    <div class="information">
-                        <mat-icon style="color:#003F8F;" class="icons">perm_contact_calendar</mat-icon>
-                        <span style="color:#003F8F;" class="contacto-text">Contacto</span>
-                    </div>
-                    <p>{{userData.phone}}</p>
-
                 </div>
-            </mat-card-content>
-            <mat-card-actions class="actions">
-                <button mat-raised-button color="primary" (click)="openEditDialog()">Edit</button>
-            </mat-card-actions>
-        </mat-card>
+                <div class="card-footer text-end">
+                    <button class="btn custom-primary-bg text-white" (click)="openEditDialog()">Edit</button>
+                </div>
+            </div>
 
-        <div class="remodeler-reviews">
-            <h2 style="color: #3F51B5; font-size: 1.5rem;">Reseñas</h2>
-            <div class="remodeler-reviews-card" *ngFor="let review of reviews">
-                <mat-card class="review-card">
-                    <mat-card-header>
-                        <img width="400px" class="review-card-img" mat-card-image src="{{review.image}}" alt="Review Image">
-                    </mat-card-header>
-                    <mat-card-content class="review-content">
-                        <p style="color: #3F51B5; font-size: 1rem; font-weight: bold;">{{review.project}}</p>
-                        <mat-icon class="review-icon">person</mat-icon> <p style="display: inline-block;">Client: </p> <p style="display: inline-block; color: #757DE8;"> {{userData.firstName + " " + userData.paternalSurname + " " + userData.maternalSurname}}</p> <br>
-                        <mat-icon class="review-icon">schedule</mat-icon> <p style="display: inline-block;">Duration: {{review.duration}}</p>
-                        <p>{{review.comment}}</p>
-                        <p style="display: inline-block;">Rating: {{review.rating}}</p> <mat-icon class="review-icon" style="color: #DDAF0A;">star</mat-icon>
-                    </mat-card-content>
-                </mat-card>
+            <div class="remodeler-reviews">
+                <h2 class="custom-primary-text" style="font-size: 1.5rem;">Reseñas</h2>
+                <div class="remodeler-reviews-card" *ngFor="let review of reviews">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <img width="400px" class="img-fluid" src="{{review.image}}" alt="Review Image">
+                        </div>
+                        <div class="card-body">
+                            <p class="custom-primary-text fw-bold">{{review.project}}</p>
+                            <i class="bi bi-person custom-primary-text"></i> <span>Client: </span> <span class="custom-primary-text">{{userData.firstName + " " + userData.paternalSurname + " " + userData.maternalSurname}}</span> <br>
+                            <i class="bi bi-clock custom-primary-text"></i> <span>Duration: {{review.duration}}</span>
+                            <p>{{review.comment}}</p>
+                            <span>Rating: {{review.rating}}</span> <i class="bi bi-star-fill" style="color: #DDAF0A;"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
-
 

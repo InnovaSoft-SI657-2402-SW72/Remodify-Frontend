@@ -23,6 +23,7 @@ export const routes: Routes = [
   {path: 'home/remodeler/tracking', component: TrackingDetailComponent},
   {path: 'reviews', component: CreateReviewComponent},
   {path: 'business', component: RemodelerSearchComponent},
+
   {path: 'business/:id', component: RemodelerDetailComponent},
   {path: 'coming-soon', component: ComingSoonComponent},
   {path:'portfolio', component: PortfolioComponent},

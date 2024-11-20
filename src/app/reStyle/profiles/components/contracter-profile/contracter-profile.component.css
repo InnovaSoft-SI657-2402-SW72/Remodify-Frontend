@@ -1,6 +1,22 @@
+.custom-primary-bg {
+    background-color: #3F51B5 !important;
+    border-color: #3F51B5 !important;
+}
+
+.custom-primary-text {
+    color: #3F51B5 !important;
+}
+
+.custom-primary-border {
+    border-color: #3F51B5 !important;
+}
+
+
+
 .profile-section {
     margin-left: 18%;
     margin-top: 2rem;
+    padding-top: 4rem;
     margin-right: 4%;
     display: flex;
     flex-direction: column;

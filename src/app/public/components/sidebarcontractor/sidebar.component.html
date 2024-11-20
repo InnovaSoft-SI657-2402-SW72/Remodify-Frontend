@@ -2,11 +2,11 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content class="sidenav-content">
     <div class="sidenav-start">
-      <div class ="sidenav-icons">
-          <a>
-              <img mat-card-avatar class="sidenav-image" src="{{userData.image}}" alt="Sidenav avatar"/>
-          </a>
-          <p class="user-name">Hi, {{userData.firstName}}!</p>
+        <div class ="sidenav-icons">
+            <button class="btn btn-primary rounded-circle p-3" (click)="redirectToProfile()">
+                <img mat-card-avatar class="sidenav-image" src="{{userData.image}}" alt="Sidenav avatar"/>
+                <p class="user-name mt-2">Hi, {{userData.firstName}}!</p>
+            </button>
           <!--  <a (click)="inDevelopment()">
               <mat-icon matPrefix>settings</mat-icon>
           </a>

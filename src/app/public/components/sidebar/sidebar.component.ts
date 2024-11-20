@@ -6,6 +6,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatBadgeModule } from "@angular/material/badge";
 import { Router, RouterLink } from "@angular/router";
 import { UserService } from "../../../reStyle/security/services/user.service";
+import {CommonModule} from "@angular/common";
 
 @Component({
     selector: 'app-sidebar',
@@ -16,7 +17,8 @@ import { UserService } from "../../../reStyle/security/services/user.service";
         MatIconModule,
         MatCardModule,
         MatBadgeModule,
-        RouterLink
+        RouterLink,
+        CommonModule
     ],
     templateUrl: './sidebar.component.html',
     styleUrl: './sidebar.component.css'
