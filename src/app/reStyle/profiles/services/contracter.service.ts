@@ -17,12 +17,12 @@ export class ContracterService {
   constructor(private http:HttpClient) { }
 
   getContractors(){
-    return this.http.get(`${this.baseUrl}/contractors`);
+    return this.http.get(`${this.baseUrl}/Contractors`);
   }
   getContractorById(id: any){
-    return this.http.get(`${this.baseUrl}/contractors/${id}`);
+    return this.http.get(`${this.baseUrl}/Contractors/${id}`);
   }
   createContractor(data: any){
-    return this.http.post(`${this.baseUrl}/contractors`, data);
+    return this.http.post(`${this.baseUrl}/Contractors`, data);
   }
 }

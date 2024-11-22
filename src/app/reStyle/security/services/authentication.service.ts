@@ -42,7 +42,7 @@ export class AuthenticationService {
     get currentUsername() { return this.signedInUsername.asObservable(); }
 
     signUp(signUpRequest: SignUpRequest) {
-        return this.http.post<SignUpResponse>(`${this.basePath}/authentication/sign-up`, signUpRequest, this.httpOptions)
+        return this.http.post<SignUpResponse>(`${this.basePath}/sign-up`, signUpRequest, this.httpOptions)
             .subscribe({
                 next: (response) => {
                     console.log(`Signed up as ${response.username} with id: ${response.id}`);
@@ -57,7 +57,7 @@ export class AuthenticationService {
 
     signIn(signInRequest: SignInRequest) {
         //console.log(signInRequest);
-        return this.http.post<SignInResponse>(`${this.basePath}/authentication/sign-in`, signInRequest, this.httpOptions)
+        return this.http.post<SignInResponse>(`${this.basePath}/sign-in`, signInRequest, this.httpOptions)
             .subscribe({
                 next: (response) => {
                     this.signedIn.next(true);

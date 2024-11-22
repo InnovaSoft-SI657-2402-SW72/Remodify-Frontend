@@ -9,8 +9,15 @@ export class RemodelerApiService {
   baseUrl: string = `${environment.serverBasePath}`;
   constructor(private http:HttpClient) { }
 
+  createBusiness(data: any){
+    return this.http.post(`${this.baseUrl}/businesses`, data);
+  }
+
+  getRemodelerByUserId(id:any){
+    return this.http.get(`${this.baseUrl}/remodelers/user/${id}`);
+  }
   getBusiness(){
-    return this.http.get(`${this.baseUrl}/businesses`);
+    return this.http.get<any[]>(`${this.baseUrl}/businesses`);
   }
   getBusinessById(id: any){
     return this.http.get(`${this.baseUrl}/businesses/${id}`);

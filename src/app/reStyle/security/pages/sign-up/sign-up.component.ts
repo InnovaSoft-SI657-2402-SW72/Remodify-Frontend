@@ -13,6 +13,11 @@ import {ToolbarHomeComponent} from "../../../../public/components/toolbar-home/t
 import {UserService} from "../../services/user.service";
 import {MatOption, MatSelect} from "@angular/material/select";
 import {SnackbarService} from "../../../../shared/services/snackbar.service";
+import { ContracterService } from '../../../profiles/services/contracter.service';
+import { RemodelerService } from '../../../profiles/services/remodeler.service';
+import { Contracter } from '../../model/contracter.entity';
+import { firstValueFrom } from 'rxjs';
+import { Remodeler } from '../../../profiles/model/remodeler.entity';
 
 @Component({
     selector: 'app-sign-up',
@@ -38,18 +43,28 @@ export class SignUpComponent extends BaseFormComponent implements OnInit {
     transformedRole: string = '';
 
     constructor(private builder: FormBuilder, private authenticationService: AuthenticationService,
-                private userService:UserService, private snackbarService: SnackbarService){
+                private userService:UserService, private snackbarService: SnackbarService, 
+                private contracterService: ContracterService, private remodelerService: RemodelerService) {
         super();
     }
+
+    async getUserIdByEmail(email: string): Promise<number> {
+        let users: any[] = await firstValueFrom(this.userService.getUsers());
+        let user = users.find((user: any) => user.email === email);
+        return user?.id;
+    }
+    
 
     showSuccessMessage(messageContent: string) {
         const successImage='assets/images/success.png'
         this.snackbarService.showSuccess1(messageContent, successImage);
+        console.log('Usuario creado correctamente');
     }
 
     showErrorMessage() {
         const errorImage='assets/images/error.png'
         this.snackbarService.showError1('Complete correctamente los datos', errorImage);
+        console.log('Complete correctamente los datos');
     }
 
     ngOnInit(): void {
@@ -64,7 +79,7 @@ export class SignUpComponent extends BaseFormComponent implements OnInit {
         })
     }
 
-    onSubmit(){
+    async onSubmit(){
         if(this.form.invalid) {
             this.showErrorMessage();
             return;
@@ -93,6 +108,20 @@ export class SignUpComponent extends BaseFormComponent implements OnInit {
 
         const signUpRequest= new SignUpRequest(username, password, roles, email, firstName, paternalSurname, maternalSurname, description, phone, image);
         this.authenticationService.signUp(signUpRequest);
+
+        if(roleSelected === 'contractor'){
+            let userId = await this.getUserIdByEmail(email);
+            const contracter= new Contracter(userId, description, phone );
+            this.contracterService.createContractor(contracter).subscribe((data) => {
+                console.log(data);
+            });
+        }else if(roleSelected === 'remodeler'){
+            let userId = await this.getUserIdByEmail(email);
+            const remodeler= new Remodeler(userId, description, phone );
+            this.remodelerService.createRRemodeler(remodeler).subscribe((data) => {
+                console.log(data);
+            });
+        }
 
         this.submitted = true;
 

@@ -13,6 +13,14 @@ import { SnackbarService } from '../../shared/services/snackbar.service';
 import {RemodelerApiService} from "../remodeler/services/remodeler-api.service";
 import {ToolbarRemodelerComponent} from "../../public/components/toolbar-remodeler/toolbar-remodeler.component";
 import {Portfolio} from "./portfolio-entity";
+import { Busines } from '../remodeler/models/busines';
+import { Remodeler } from '../profiles/model/remodeler.entity';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UserService } from '../security/services/user.service';
+import { firstValueFrom } from 'rxjs';
+import { User } from '../security/model/user.entity';
+import { RemodelerService } from '../profiles/services/remodeler.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -42,7 +50,7 @@ export class PortfolioComponent implements OnInit {
     return this._portfolioForm;
   }
 
-  constructor(private snackbarService: SnackbarService, private fb: FormBuilder, private remodelerApiService : RemodelerApiService) {
+  constructor(private snackbarService: SnackbarService, private fb: FormBuilder,private remodelerApiService: RemodelerApiService ,private remodelerService : RemodelerService, private userService: UserService) {
     this._portfolioForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -53,6 +61,31 @@ export class PortfolioComponent implements OnInit {
       photo: [null]
     });
   }
+
+  getRemodelerIdWithUserId(userId: any): Observable<Remodeler> {
+    return this.remodelerApiService.getRemodelerByUserId(userId).pipe(
+      map((response: any) => {
+        // Asegúrate de que el objeto tiene la forma de un Remodeler
+        const remodeler: Remodeler = {
+          id: response.id,
+          userId: response.userId,
+          description: response.description,
+          phone: response.phone,
+        };
+        return remodeler;
+      })
+    );
+  }
+  
+
+
+
+  async getBusinessIdByName(name: string): Promise<number> {
+    let business: any[] = await firstValueFrom(this.remodelerApiService.getBusiness());
+    let busines = business.find((busines: any) => busines.name === name);
+    return busines?.id;
+}
+  
 
   showSuccessMessage(messageContent: string) {
     const successImage = 'assets/images/success.png';
@@ -66,7 +99,7 @@ export class PortfolioComponent implements OnInit {
 
   editForm: FormGroup;
 
-  onSubmit() {
+  async onSubmit() {
     if (this._portfolioForm.valid) {
 
       //input parameters in form
@@ -74,12 +107,33 @@ export class PortfolioComponent implements OnInit {
       let description = this._portfolioForm.value.description;
       let image = this._portfolioForm.value.image;
       //deafault parameters
-      let businessId = 1;
+  
       let contractorId = 1;
       let startDate = "2024-06-24T17:51:01.729Z";
       let finishDate = "2024-06-24T17:51:01.729Z";
+      
+      let userId = sessionStorage.getItem('signInId');
+
+      this.getRemodelerIdWithUserId(userId).subscribe((remodeler: Remodeler) => {
+        let remodelerId = remodeler?.id;
+      
+        const busines = new Busines(name, description, "Lima", "Lima", image, "Empresa", remodelerId);
+      
+        this.remodelerApiService.createBusiness(busines).subscribe(
+          (response) => {
+            console.log('response', response);
+          },
+          (error) => {
+            console.log('error', error);
+          }
+        );
+      });
+
+      let businessId = await this.getBusinessIdByName(name);
+      console.log('businessId', businessId);
 
       const portfolioFormData = new Portfolio(name, description, businessId, contractorId, startDate, finishDate, image);
+      //const busines = new Busines(name, description, address, city, image, exterpise, remodelerId);
 
       this.remodelerApiService.createProject(portfolioFormData).subscribe(
           (response) => {

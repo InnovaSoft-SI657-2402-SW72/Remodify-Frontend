@@ -17,7 +17,7 @@ export class RemodelerService{
   constructor(private http:HttpClient) { }
 
   getRemodelers(){
-    return this.http.get(`${this.baseUrl}/businesses`);
+    return this.http.get<any[]>(`${this.baseUrl}/businesses`);
   }
   getRemodelerById(id: any){
     return this.http.get(`${this.baseUrl}/businesses/${id}`);
@@ -28,4 +28,9 @@ export class RemodelerService{
   createRemodeler(data: any){
     return this.http.post(`${this.baseUrl}/businesses`, data);
   }
+
+  createRRemodeler(data: any){
+    return this.http.post(`${this.baseUrl}/remodelers`, data);
+  }
+
 }
