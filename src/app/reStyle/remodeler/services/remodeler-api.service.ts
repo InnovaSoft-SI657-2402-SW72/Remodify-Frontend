@@ -26,10 +26,10 @@ export class RemodelerApiService {
     return this.http.post(`${this.baseUrl}/projects`, data);
   }
   createProjectRequest(data: any){
-    return this.http.post(`${this.baseUrl}/projectRequests`, data);
+    return this.http.post(`${this.baseUrl}/project-requests`, data);
   }
   getProjectRequestsById(id: any){
-    return this.http.get(`${this.baseUrl}/projectRequests/${id}`);
+    return this.http.get(`${this.baseUrl}/project-requests/${id}`);
   }
   getProjects(){
     return this.http.get(`${this.baseUrl}/projects`);

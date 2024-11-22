@@ -44,6 +44,7 @@ import { RemodelerService } from '../profiles/services/remodeler.service';
 })
 export class PortfolioComponent implements OnInit {
   _portfolioForm: FormGroup;
+  businessId: number = 1;
 
 
   get portfolioForm(): FormGroup {
@@ -79,14 +80,6 @@ export class PortfolioComponent implements OnInit {
   
 
 
-
-  async getBusinessIdByName(name: string): Promise<number> {
-    let business: any[] = await firstValueFrom(this.remodelerApiService.getBusiness());
-    let busines = business.find((busines: any) => busines.name === name);
-    return busines?.id;
-}
-  
-
   showSuccessMessage(messageContent: string) {
     const successImage = 'assets/images/success.png';
     this.snackbarService.showSuccess1(messageContent, successImage);
@@ -99,6 +92,7 @@ export class PortfolioComponent implements OnInit {
 
   editForm: FormGroup;
 
+  
   async onSubmit() {
     if (this._portfolioForm.valid) {
 
@@ -118,10 +112,10 @@ export class PortfolioComponent implements OnInit {
         let remodelerId = remodeler?.id;
       
         const busines = new Busines(name, description, "Lima", "Lima", image, "Empresa", remodelerId);
-      
         this.remodelerApiService.createBusiness(busines).subscribe(
           (response) => {
             console.log('response', response);
+            this.businessId++;
           },
           (error) => {
             console.log('error', error);
@@ -129,10 +123,9 @@ export class PortfolioComponent implements OnInit {
         );
       });
 
-      let businessId = await this.getBusinessIdByName(name);
-      console.log('businessId', businessId);
+      let id = this.businessId;
 
-      const portfolioFormData = new Portfolio(name, description, businessId, contractorId, startDate, finishDate, image);
+      const portfolioFormData = new Portfolio(name, description, id, contractorId, startDate, finishDate, image);
       //const busines = new Busines(name, description, address, city, image, exterpise, remodelerId);
 
       this.remodelerApiService.createProject(portfolioFormData).subscribe(
@@ -151,5 +144,6 @@ export class PortfolioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 }
